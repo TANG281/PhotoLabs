@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../styles/HomeRoute.scss';
+import TopNavigation from 'components/TopNavigationBar';
+import PhotoList from 'components/PhotoList';
 
-const HomeRoute = () => {
+
+const HomeRoute = (props) => {
+
   return (
     <div className="home-route">
-      {/* Insert React */}
+      <TopNavigation topics={props.topics} isFavPhotoExist={isFavPhotoExist} />
+      <PhotoList photos={props.photos} swithFavExistance={swithFavExistance}/>
     </div>
   );
 };
