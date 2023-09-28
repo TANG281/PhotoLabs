@@ -7,12 +7,14 @@ const PhotoList = (props) => {
   const photos = props.photos.map((data) =>
     <PhotoListItem
       key={data.id}
+      id={data.id}
       city={data.location.city}
       country={data.location.country}
       imageSource={data.urls.regular}
       username={data.user.username}
       profile={data.user.profile}
-      switchFavExistance={props.switchFavExistance}
+      favs={props.favs}
+      toggleFav={props.toggleFav}
     />
   );
   return (
