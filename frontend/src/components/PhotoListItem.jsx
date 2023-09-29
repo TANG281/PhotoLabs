@@ -3,10 +3,21 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
+
+  const handleClick = () => {
+    !props.isOpen && props.toggleModal && props.toggleModal();
+    !props.isOpen && props.choosePhoto && props.choosePhoto(props.photo);
+  };
+
   return (
     <div className='photo-list__item'>
-      <PhotoFavButton key={props.id} photoId={props.id} favs={props.favs} toggleFav={props.toggleFav}/>
-      <img className='photo-list__image' src={props.imageSource} />
+      <PhotoFavButton
+        key={props.id}
+        photoId={props.id}
+        favs={props.favs}
+        toggleFav={props.toggleFav}
+      />
+      <img onClick={handleClick} className='photo-list__image' src={props.imageSource} />
       <div className='photo-list__user-details'>
         <img className='photo-list__user-profile' src={props.profile} />
         <div className='photo-list__user-info'>
