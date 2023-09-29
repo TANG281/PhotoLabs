@@ -7,17 +7,20 @@ import PhotoList from 'components/PhotoList';
 
 const HomeRoute = (props) => {
 
-  const [favs, setFavs] = useState([]);
-
-  const toggleFav = (photoId) => {
-    const newFavs = [...favs];
-    favs.includes(photoId) ? newFavs.splice(favs.indexOf(photoId),1) && setFavs(newFavs) : newFavs.push(photoId) && setFavs(newFavs)
-  };
-
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics} favs={favs} />
-      <PhotoList photos={props.photos} favs={favs} toggleFav={toggleFav} />
+      <TopNavigation
+        topics={props.topics}
+        favs={props.favs}
+      />
+      <PhotoList
+        isOpen={props.isOpen}
+        photos={props.photos}
+        favs={props.favs}
+        toggleFav={props.toggleFav}
+        toggleModal={props.toggleModal}
+        choosePhoto={props.choosePhoto}
+      />
     </div>
   );
 };
