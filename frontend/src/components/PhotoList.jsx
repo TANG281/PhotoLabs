@@ -18,7 +18,7 @@ const PhotoList = (props) => {
       toggleModal={props.toggleModal}
       choosePhoto={props.choosePhoto }
       photo={data}
-      isOpen={props.isOpen}
+      isModalOpen={props.isModalOpen}
     />
   );
   return (

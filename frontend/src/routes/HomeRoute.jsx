@@ -14,7 +14,7 @@ const HomeRoute = (props) => {
         favs={props.favs}
       />
       <PhotoList
-        isOpen={props.isOpen}
+        isModalOpen={props.isModalOpen}
         photos={props.photos}
         favs={props.favs}
         toggleFav={props.toggleFav}

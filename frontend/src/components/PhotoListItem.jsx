@@ -5,8 +5,8 @@ import PhotoFavButton from "./PhotoFavButton";
 const PhotoListItem = (props) => {
 
   const handleClick = () => {
-    !props.isOpen && props.toggleModal && props.toggleModal();
-    !props.isOpen && props.choosePhoto && props.choosePhoto(props.photo);
+    !props.isModalOpen && props.toggleModal && props.toggleModal();
+    !props.isModalOpen && props.choosePhoto && props.choosePhoto(props.photo);
   };
 
   return (
