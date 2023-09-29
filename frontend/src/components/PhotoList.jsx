@@ -15,6 +15,10 @@ const PhotoList = (props) => {
       profile={data.user.profile}
       favs={props.favs}
       toggleFav={props.toggleFav}
+      toggleModal={props.toggleModal}
+      choosePhoto={props.choosePhoto }
+      photo={data}
+      isOpen={props.isOpen}
     />
   );
   return (
