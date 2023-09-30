@@ -10,20 +10,7 @@ import useApplicationData from './hooks/useApplicationData';
 const App = () => {
 
   const { state, toggleModal, choosePhoto, toggleFav } = useApplicationData();
-  console.log(state);
   const { isModalOpen, chosenPhoto, favs } = state;
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const toggleModal = () => setIsModalOpen(!isModalOpen);
-
-  // const [chosenPhoto, setChosenPhoto] = useState({});
-  // const choosePhoto = (photo) => setChosenPhoto(photo);
-
-  // const [favs, setFavs] = useState([]);
-  // const toggleFav = (photoId) => {
-  //   const newFavs = [...favs];
-  //   favs.includes(photoId) ? newFavs.splice(favs.indexOf(photoId), 1) && setFavs(newFavs) : newFavs.push(photoId) && setFavs(newFavs);
-  // };
-
 
   return (
     <div className="App">
