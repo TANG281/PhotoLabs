@@ -7,7 +7,7 @@ import FavBadge from './FavBadge';
 const TopNavigation = (props) => {
 
   let isFavPhotoExist = false;
-  if (props.favs.length > 0) { isFavPhotoExist = true; }
+  if (props.favs.length > 0) isFavPhotoExist = true;
 
   return (
     <div className="top-nav-bar">
