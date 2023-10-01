@@ -1,7 +1,16 @@
-# react-photolabs
-The PhotoLabs project for the Web Development React course programming.
+# React - Photolabs
+A Photo library React-based single page app. You can filter the photos by topics and see more information of a photo in a separate modal
 
-# Photolabs
+# Dependencies
+- React
+- Create-react-app
+- Express
+- pg
+
+# Screenshots
+![HomePage](image.png)
+
+![Modal](image-1.png)
 
 ## Setup
 
