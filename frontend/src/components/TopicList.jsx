@@ -9,7 +9,9 @@ const TopicList = (props) => {
       {props.topics.map((data) =>
         <TopicListItem
           key={data.id}
+          id={data.id}
           title={data.title}
+          getPhotosByTopic={props.getPhotosByTopic}
         />
       )}
     </div>
