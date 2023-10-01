@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -6,7 +6,8 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 };
 
 
@@ -29,6 +30,18 @@ function reducer(state, action) {
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return { ...state, isModalOpen: !state.isModalOpen };
 
+    // Update photoData state when open the app
+    case ACTIONS.SET_PHOTO_DATA:
+      return { ...state, photoData: action.photoData };
+
+    // Update topicData state when open the app
+    case ACTIONS.SET_TOPIC_DATA:
+      return { ...state, topicData: action.topicData };
+
+    // Update photoData state when click on a specific topic on the Nav bar
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      return { ...state, photoData: action.photoDataByTopic };
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -47,8 +60,30 @@ const useApplicationData = () => {
       isModalOpen: false,
       chosenPhoto: null,
       favs: [],
+      photoData: [],
+      topicData: []
     }
   );
+
+  useEffect(() => {
+
+    // Fetch photo data from backend server
+    fetch('http://localhost:8001/api/photos')
+      .then((res) => res.json())
+      .then(data => dispatch({
+        type: ACTIONS.SET_PHOTO_DATA,
+        photoData: data
+      }));
+
+    // Fetch topic data from backend server
+    fetch('http://localhost:8001/api/topics')
+      .then((res) => res.json())
+      .then(data => dispatch({
+        type: ACTIONS.SET_TOPIC_DATA,
+        topicData: data
+      }));
+
+  }, []);
 
   // Function to open/close the modal
   const toggleModal = () => {
@@ -73,14 +108,24 @@ const useApplicationData = () => {
         : ACTIONS.FAV_PHOTO_ADDED,
       photoId
     });
+  };
 
+  // Function to filter photos by topic
+  const getPhotosByTopic = (topicId) => {
+    fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+      .then(res => res.json())
+      .then(data => dispatch({
+        type: ACTIONS.GET_PHOTOS_BY_TOPICS,
+        photoDataByTopic: data
+      }));
   };
 
   return {
     state,
     toggleModal,
     choosePhoto,
-    toggleFav
+    toggleFav,
+    getPhotosByTopic
   };
 
 };
